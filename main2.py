@@ -33,6 +33,8 @@ def set_gps_to_photo(photo_path, lat, lon):
         d = int(dec)
         m = int((abs(dec) - abs(d)) * 60)
         s = (abs(dec) - abs(d) - m/60) * 3600
+        if m == 0:
+            m = "0"
         return (abs(d), m, s)
     with open(photo_path, 'rb') as img_file:
         img = ExifImage(img_file)
@@ -53,3 +55,11 @@ for filename in os.listdir(photos_dir):
         nearest = find_nearest_gpx_point(photo_time, gpx_points)
         set_gps_to_photo(photo_path, nearest['lat'], nearest['lon'])
         print(f"{filename}: {nearest['lat']}, {nearest['lon']}")
+
+for filename in os.listdir(photos_dir):
+    with open(photo_path, 'rb') as img_file:
+        img = ExifImage(img_file)
+        print('latitude_ref', img.gps_latitude_ref)
+        print('latitude', img.gps_latitude)
+        print('longitude_ref', img.gps_longitude_ref)
+        print('longitude', img.gps_longitude)

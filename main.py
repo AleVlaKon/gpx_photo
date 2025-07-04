@@ -96,12 +96,12 @@ def write_gps_to_image(image_path, lat, lon):
         print(f"Ошибка при записи GPS в EXIF: {e}")
 
 def main():
-    if len(sys.argv) < 3:
-        print("Использование: python geotag_photos.py <путь_к_gpx> <путь_к_фото>")
-        return
+    # if len(sys.argv) < 3:
+    #     print("Использование: python geotag_photos.py <путь_к_gpx> <путь_к_фото>")
+    #     return
     
-    gpx_file = sys.argv[1]
-    photo_path = sys.argv[2]
+    gpx_file = 'gpx_track.gpx'
+    photo_path = 'Photo'
     
     # Проверяем, является ли photo_path файлом или директорией
     if os.path.isfile(photo_path):
